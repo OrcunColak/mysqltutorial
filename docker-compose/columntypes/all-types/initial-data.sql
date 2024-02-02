@@ -1,4 +1,5 @@
 -- https://blog.devart.com/mysql-data-types.html
+-- https://blog.devart.com/mysql-int-data-type.html#what_is_mysql_integer
 create TABLE all_char_types_table (
     varchar_column VARCHAR(255),
     char_column CHAR(10),
@@ -27,15 +28,15 @@ create TABLE enum_type_table (
 
 create TABLE integer_types_table (
     tinyint_signed TINYINT,
-    tinyint_unsigned TINYINT UNSIGNED,
+    tinyint_unsigned TINYINT UNSIGNED, -- Between 0 and 255. Java uses short
     smallint_signed SMALLINT,
-    smallint_unsigned SMALLINT UNSIGNED,
-    mediumint_signed MEDIUMINT,
-    mediumint_unsigned MEDIUMINT UNSIGNED,
+    smallint_unsigned SMALLINT UNSIGNED, --Between 0 and 65535. Java uses Integer
+    mediumint_signed MEDIUMINT, -- Between -8388608 and 8388607. Java uses Integer
+    mediumint_unsigned MEDIUMINT UNSIGNED, -- Betweeen 0 and 16777215. Java uses Integer
     int_signed INT,
-    int_unsigned INT UNSIGNED,
+    int_unsigned INT UNSIGNED, --Between 0 and 4294967295. Java uses Long
     bigint_signed BIGINT,
-    bigint_unsigned BIGINT UNSIGNED
+    bigint_unsigned BIGINT UNSIGNED -- Betweeen 0 and 18446744073709551615. Java uses BigInteger
 );
 
 create TABLE boolean_types_table (
