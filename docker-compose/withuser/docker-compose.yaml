@@ -1,5 +1,5 @@
 # https://ashishnoob.medium.com/creating-a-mysql-instance-with-docker-compose-92e749c43611
-# SELECT current_user; to verify user name
+# SELECT current_user; to verify username
 version: '3.8'
 
 services:
