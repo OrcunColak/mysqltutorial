@@ -34,7 +34,7 @@ CREATE TABLE integer_types_table (
     mediumint_signed MEDIUMINT, -- Between -8388608 and 8388607. Java uses Integer
     mediumint_unsigned MEDIUMINT UNSIGNED, -- Between 0 and 16777215. Java uses Integer
     int_signed INT,
-    int_unsigned INT UNSIGNED, --Between 0 and 4294967295. Java uses Long
+    int_unsigned INT UNSIGNED, -- Between 0 and 4294967295. Java uses Long
     bigint_signed BIGINT,
     bigint_unsigned BIGINT UNSIGNED -- Between 0 and 18446744073709551615. Java uses BigInteger
 );
