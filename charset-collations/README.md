@@ -18,6 +18,7 @@ The output is
 
 utf8mb4 means that it is actually UTF-8
 
+
 # utf8mb4_0900_ai_ci
 
 It is **Accent-insensitive** and **Case-insensitive**
