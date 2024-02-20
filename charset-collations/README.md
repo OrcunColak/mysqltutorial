@@ -3,10 +3,10 @@
 The original information is from
 https://planetscale.com/blog/mysql-charsets-collations
 
-This shows charset
+This SQL shows the charset of the table
 
 ```sql
-SHOW CREATE TABLE tablename;
+SHOW CREATE TABLE all_char_types_table;
 ```
 
 The output is
