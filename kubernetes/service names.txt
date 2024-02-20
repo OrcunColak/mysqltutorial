@@ -1,0 +1,6 @@
+1. Open bash. Change the deployment name
+kubectl exec -it mysql-deployment-56f67c9d44-gndxk -- /bin/bash
+
+2. Connect as mysql-service or mysql-service.default.svc.cluster.local
+mysql -h mysql-service -u root -ppassword
+mysql -h mysql-service.default.svc.cluster.local -u root -ppassword

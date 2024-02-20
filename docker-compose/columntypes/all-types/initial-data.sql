@@ -16,7 +16,7 @@ CREATE TABLE all_blob_types_table (
     longblob_column LONGBLOB
 );
 
-CREATE TABLE all_binarychar_types_table (
+CREATE TABLE binary_types_table (
     binary_column BINARY(10),
     varbinary_column VARBINARY(255)
 );
