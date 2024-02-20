@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  mysql-master:
+    image: mysql/mysql-server:latest
+    container_name: mysql-master
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: userdb
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql-master-slave
+    volumes:
+      - ./master/my.cnf:/etc/my.cnf
+      - ./master/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - master-data:/var/lib/mysql  # Create named volume called master-data in docker
+  
+  mysql-slave1:
+    image: mysql/mysql-server:latest
+    container_name: mysql-slave1
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: userdb
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3307:3306"
+    depends_on:
+      - mysql-master
+    networks:
+      - mysql-master-slave
+    volumes:
+      - ./slave1/my.cnf:/etc/my.cnf
+      - ./slave1/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - slave1-data:/var/lib/mysql  # Create named volume called slave1-data in docker
+
+volumes:
+  master-data:
+    driver: local
+  slave1-data:
+    driver: local
+    
+networks:
+  mysql-master-slave:
+    driver: bridge
