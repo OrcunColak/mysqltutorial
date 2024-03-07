@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: userdb
+      MYSQL_USER: your_user
+      MYSQL_PASSWORD: your_password
+      # root can log in from every host
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./logs:/var/log/mysql
