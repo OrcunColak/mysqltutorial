@@ -1,0 +1,19 @@
+# See https://levelup.gitconnected.com/mysql-ttl-configuration-the-local-setup-is-included-9c971458fa7b
+version: '3.9'
+services:
+  my_sql_local:
+    image: mysql:8.4.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      # root can log in from every host
+      MYSQL_ROOT_HOST: '%'
+      
+      MYSQL_USER: message_user
+      MYSQL_PASSWORD: message_password
+      MYSQL_NATIVE_PASSWORD: ON
+    volumes:
+      - ./init/:/docker-entrypoint-initdb.d
