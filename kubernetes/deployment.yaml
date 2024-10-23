@@ -1,4 +1,18 @@
 # https://medium.com/@manojkumar_41904/understanding-kubernetes-service-dns-a-deep-dive-7bf68b2baa63
+# https://medium.com/@ninapepite/stop-use-kubernetes-as-a-docker-314d307d6dfb
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  labels:
+    app: mysql-label  # Label for easy undeploy
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,6 +35,23 @@ spec:
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: password
+            - name: MYSQL_DATABASE
+              value: glpi
+            - name: MYSQL_USER
+              value: glpi
+            - name: MYSQL_PASSWORD
+              value: glpi
+          volumeMounts:
+            - name: mysql-pvc
+              mountPath: /var/lib/mysql
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "sleep", "60" ]
+      volumes:
+        - name: mysql-pvc
+          persistentVolumeClaim:
+          claimName: mysql-pvc
 ---
 apiVersion: v1
 kind: Service
